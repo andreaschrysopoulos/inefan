@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@theme {
+  --breakpoint-team2: 705px;
+  --breakpoint-team3: 1060px;
+
+  --breakpoint-blogMedium: 640px;
+  --breakpoint-blogLarge: 960px;
+}
