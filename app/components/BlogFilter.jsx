@@ -23,7 +23,7 @@ export default function BlogFilter({ selectedFilters }) {
 
   useEffect(() => {
     router.replace(pathname + arrayToQueryString(selected), { scroll: false });
-  }, [selected]);
+  }, [selected, router, pathname]);
 
   const isToggled = (category) => {
     return selected.includes(category) ? 'bg-stone-300 dark:bg-stone-800' : 'bg-stone-200 dark:bg-stone-900 active:bg-[#dbdad8] hover:bg-[#dbdad8] dark:hover:bg-stone-800 dark:active:bg-stone-800'

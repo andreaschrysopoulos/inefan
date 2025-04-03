@@ -3,8 +3,12 @@
 import Link from "next/link";
 import { links } from "../assets/siteMap";
 import { useState, useEffect, useRef } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 function Navbar() {
+
+  const pathname = usePathname()
+
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
   const burgerIconRef = useRef(null); // Initialize with null
   // const burgerIconDarkRef = useRef(null); // Initialize with null
@@ -69,7 +73,7 @@ function Navbar() {
               key={link.key}
               href={link.to}
             >
-              <span className="font-stretch-103% flex text-black dark:text-white w-max text-end cursor-pointer py-1">
+              <span className={`font-stretch-103% flex text-black dark:text-white w-max text-end cursor-pointer py-1 ${pathname.includes(link.to) ? "opacity-100" : "opacity-50 hover:opacity-100 active:opacity-100"}`}>
                 {link.pageName}
               </span>
             </Link>
@@ -102,8 +106,8 @@ function Navbar() {
       <div
         ref={burgerMenuRef}
         className={`transition-all ease-in-out duration-500 flex-col w-full max-w-5xl text-2xl ${showBurgerMenu
-            ? "flex py-3 max-h-100 pointer-events-auto"
-            : "max-h-0 py-0 pointer-events-none"
+          ? "flex py-3 max-h-100 pointer-events-auto"
+          : "max-h-0 py-0 pointer-events-none"
           }`}
       >
         {links.map((link) => (
@@ -111,7 +115,7 @@ function Navbar() {
             key={link.key}
             href={link.to}
             onClick={() => setShowBurgerMenu(false)}
-            className="flex justify-end"
+            className={`flex justify-end ${pathname.includes(link.to) ? "opacity-100" : "opacity-50 hover:opacity-100 active:opacity-100"}`}
           >
             <span
               className={`font-stretch-103% flex text-black dark:text-white w-max text-end cursor-pointer py-2 ${showBurgerMenu ? "transition-all ease-in-out duration-600 opacity-100" : "opacity-0 transition-all ease-in-out duration-300"}`}

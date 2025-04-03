@@ -1,6 +1,8 @@
 import Link from "next/link"
 
-const Footer = () => {
+export default async function Footer() {
+
+
   return (
     <footer className="flex justify-center items-center w-full dark:bg-stone-950 bg-stone-800 px-5 text-stone-100 min-w-[310px]">
       <div className="py-2.5 flex flex-wrap justify-between max-w-5xl w-full items-center text-sm gap-x-5 gap-y-3">
@@ -39,7 +41,5 @@ const Footer = () => {
         <span className="min-w-max opacity-60">Copyright &copy; 2025 Inefan.</span>
       </div>
     </footer>
-  );
-};
-
-export default Footer;
+  )
+}

@@ -1,12 +1,13 @@
 import { articles } from '@/app/assets/database';
 import Custom404 from '@/app/not-found';
 
-const SingleInsight = ({ params }) => {
-  const { slug } = params;
+export default async function SingleInsight({ params }) {
+  const { slug } = await params
+
 
   let article;
   articles.forEach(art => {
-    console.log(art.slug);
+    // console.log(art.slug)
     if (art.slug === slug) {
       article = art;
       return;
@@ -56,5 +57,3 @@ const SingleInsight = ({ params }) => {
     </>
   )
 }
-
-export default SingleInsight

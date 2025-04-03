@@ -1,10 +1,15 @@
 import BlogFilter from '../components/BlogFilter'
 import InsightsGrid from '../components/InsightsGrid'
 
+export const metadata = {
+  title: "Inefan - Insights",
+  description: "Independent Economic & Financial Analysis",
+};
+
 export default async function Insights({ searchParams }) {
+
   const params = await searchParams;
   const selectedFilters = params?.category ? (Array.isArray(params.category) ? params.category : [params.category]) : [];
-  console.log(selectedFilters);
 
   return (
     <div className='flex-auto flex flex-col justify-start pb-15 px-5'>

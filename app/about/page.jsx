@@ -3,7 +3,8 @@ export const metadata = {
   description: "Independent Economic & Financial Analysis",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+
   return (
     <div className='flex flex-auto flex-col items-center justify-center px-5 pb-8 mb-20'>
       <div className="flex flex-col max-w-5xl mx-auto">
