@@ -1,5 +1,5 @@
-import { articles } from '@/app/assets/database';
-import Custom404 from '@/app/not-found';
+import { articles } from '../../assets/database';
+import Custom404 from '../../not-found'
 
 export default async function SingleInsight({ params }) {
   const { slug } = await params
