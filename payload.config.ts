@@ -1,46 +1,45 @@
-import sharp from 'sharp'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { postgresAdapter } from '@payloadcms/db-postgres'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob' // Import the Vercel Blob adapter
-import { buildConfig } from 'payload'
+import sharp from 'sharp';
+import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import { postgresAdapter } from '@payloadcms/db-postgres';
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
+import { buildConfig } from 'payload';
+
+// Debug logging to confirm environment variables
+console.log('BLOB_READ_WRITE_TOKEN:', process.env.BLOB_READ_WRITE_TOKEN);
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('DATABASE_URL:', process.env.DATABASE_URL);
 
 export default buildConfig({
   editor: lexicalEditor(),
-
   collections: [
     {
-      slug: 'articles', // articles collection
+      slug: 'articles',
       admin: {
-        useAsTitle: 'title', // Display the 'title' field in the admin panel list view
-        defaultColumns: ['title', 'category', 'date'], // Columns to show in the list view
+        useAsTitle: 'title',
+        defaultColumns: ['title', 'category', 'date'],
       },
       fields: [
         {
-          name: 'slug', // Slug URL
+          name: 'slug',
           type: 'text',
           required: true,
-          unique: true, // Ensures slugs are unique (important for URL routing)
+          unique: true,
           admin: {
-            position: 'sidebar', // Display in the sidebar in the admin panel
+            position: 'sidebar',
           },
         },
         {
-          name: 'title', // Title
+          name: 'title',
           type: 'text',
           required: true,
         },
         {
-          name: 'subtitle', // Subtitle
+          name: 'category',
           type: 'text',
           required: true,
         },
         {
-          name: 'category', // Category !! Should be a select
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'date', // Date
+          name: 'date',
           type: 'date',
           required: true,
           admin: {
@@ -50,27 +49,29 @@ export default buildConfig({
           },
         },
         {
-          name: 'image', // Image
-          type: 'upload',
-          relationTo: 'media',
-        },
-        {
-          name: 'content', // Content
+          name: 'content',
           type: 'richText',
           required: true,
           editor: lexicalEditor(),
         },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
       ],
     },
     {
-      slug: 'media', // media collection
+      slug: 'media',
       upload: {
-        staticDir: 'media', // Directory where files will be stored (relative to project root)
-        mimeTypes: ['image/*'], // Restrict to images only
+        // Only use staticDir in development (when Vercel Blob is not enabled)
+        ...(process.env.BLOB_READ_WRITE_TOKEN ? {} : { staticDir: 'media' }),
+        mimeTypes: ['image/*'],
       },
       fields: [
         {
-          name: 'alt', // Alt text for accessibility
+          name: 'alt',
           type: 'text',
           required: true,
         },
@@ -79,15 +80,14 @@ export default buildConfig({
   ],
   plugins: [
     vercelBlobStorage({
-      enabled: process.env.BLOB_READ_WRITE_TOKEN !== undefined, // Enable only if token is present
+      enabled: process.env.BLOB_READ_WRITE_TOKEN !== undefined,
       collections: {
-        media: true, // Apply Vercel Blob to the 'media' collection
+        media: true,
       },
-      token: process.env.BLOB_READ_WRITE_TOKEN, // Vercel Blob token
-      clientUploads: true, // Enable client-side uploads to bypass Vercel server limits
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+      clientUploads: true,
     }),
   ],
-
   secret: process.env.PAYLOAD_SECRET || '',
   db: postgresAdapter({
     pool: {
@@ -95,4 +95,4 @@ export default buildConfig({
     },
   }),
   sharp,
-})
+});
