@@ -1,7 +1,6 @@
 import sharp from 'sharp'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
-import { buildConfig } from 'payload'
+import { postgresAdapter } from '@payloadcms/db-postgres';import { buildConfig } from 'payload'
 
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
@@ -14,12 +13,11 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
   // Whichever Database Adapter you're using should go here
   // Mongoose is shown as an example, but you can also use Postgres
-  db: sqliteAdapter({
+  db: postgresAdapter({
     // SQLite-specific arguments go here.
     // `client.url` is required.
-    client: {
-      url: process.env.DATABASE_URL,
-      authToken: process.env.DATABASE_AUTH_TOKEN,
+    pool: {
+      connectionString: process.env.DATABASE_URL,
     },
   }),
   // If you want to resize images, crop, set focal point, etc.
