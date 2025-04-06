@@ -1,28 +1,98 @@
 import sharp from 'sharp'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { postgresAdapter } from '@payloadcms/db-postgres';import { buildConfig } from 'payload'
+import { postgresAdapter } from '@payloadcms/db-postgres'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob' // Import the Vercel Blob adapter
+import { buildConfig } from 'payload'
 
 export default buildConfig({
-  // If you'd like to use Rich Text, pass your editor here
   editor: lexicalEditor(),
 
-  // Define and configure your collections in this array
-  collections: [],
+  collections: [
+    {
+      slug: 'articles', // articles collection
+      admin: {
+        useAsTitle: 'title', // Display the 'title' field in the admin panel list view
+        defaultColumns: ['title', 'category', 'date'], // Columns to show in the list view
+      },
+      fields: [
+        {
+          name: 'slug', // Slug URL
+          type: 'text',
+          required: true,
+          unique: true, // Ensures slugs are unique (important for URL routing)
+          admin: {
+            position: 'sidebar', // Display in the sidebar in the admin panel
+          },
+        },
+        {
+          name: 'title', // Title
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'subtitle', // Subtitle
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'category', // Category !! Should be a select
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'date', // Date
+          type: 'date',
+          required: true,
+          admin: {
+            date: {
+              pickerAppearance: 'dayOnly',
+            },
+          },
+        },
+        {
+          name: 'image', // Image
+          type: 'upload',
+          relationTo: 'media',
+        },
+        {
+          name: 'content', // Content
+          type: 'richText',
+          required: true,
+          editor: lexicalEditor(),
+        },
+      ],
+    },
+    {
+      slug: 'media', // media collection
+      upload: {
+        staticDir: 'media', // Directory where files will be stored (relative to project root)
+        mimeTypes: ['image/*'], // Restrict to images only
+      },
+      fields: [
+        {
+          name: 'alt', // Alt text for accessibility
+          type: 'text',
+          required: true,
+        },
+      ],
+    },
+  ],
+  plugins: [
+    vercelBlobStorage({
+      enabled: process.env.BLOB_READ_WRITE_TOKEN !== undefined, // Enable only if token is present
+      collections: {
+        media: true, // Apply Vercel Blob to the 'media' collection
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN, // Vercel Blob token
+      clientUploads: true, // Enable client-side uploads to bypass Vercel server limits
+    }),
+  ],
 
-  // Your Payload secret - should be a complex and secure string, unguessable
   secret: process.env.PAYLOAD_SECRET || '',
-  // Whichever Database Adapter you're using should go here
-  // Mongoose is shown as an example, but you can also use Postgres
   db: postgresAdapter({
-    // SQLite-specific arguments go here.
-    // `client.url` is required.
     pool: {
       connectionString: process.env.DATABASE_URL,
     },
   }),
-  // If you want to resize images, crop, set focal point, etc.
-  // make sure to install it and pass it to the config.
-  // This is optional - if you don't need to do these things,
-  // you don't need it!
   sharp,
 })

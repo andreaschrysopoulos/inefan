@@ -43,4 +43,4 @@ inefan.db
 *.tsbuildinfo
 next-env.d.ts
 
-.vscode/
+.vscode/media/
