@@ -1,13 +1,13 @@
-import sharp from 'sharp';
-import { lexicalEditor } from '@payloadcms/richtext-lexical';
-import { postgresAdapter } from '@payloadcms/db-postgres';
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
-import { buildConfig } from 'payload';
+import sharp from 'sharp'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { postgresAdapter } from '@payloadcms/db-postgres'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { buildConfig } from 'payload'
 
 // Debug logging to confirm environment variables
-console.log('BLOB_READ_WRITE_TOKEN:', process.env.BLOB_READ_WRITE_TOKEN);
-console.log('NODE_ENV:', process.env.NODE_ENV);
-console.log('DATABASE_URL:', process.env.DATABASE_URL);
+// console.log('BLOB_READ_WRITE_TOKEN:', process.env.BLOB_READ_WRITE_TOKEN)
+// console.log('NODE_ENV:', process.env.NODE_ENV)
+// console.log('DATABASE_URL:', process.env.DATABASE_URL)
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -16,7 +16,7 @@ export default buildConfig({
       slug: 'articles',
       admin: {
         useAsTitle: 'title',
-        defaultColumns: ['title', 'category', 'date'],
+        defaultColumns: ['title', 'category', 'date', 'image'],
       },
       fields: [
         {
@@ -35,6 +35,11 @@ export default buildConfig({
         },
         {
           name: 'category',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'subtitle',
           type: 'text',
           required: true,
         },
@@ -65,8 +70,6 @@ export default buildConfig({
     {
       slug: 'media',
       upload: {
-        // Only use staticDir in development (when Vercel Blob is not enabled)
-        ...(process.env.BLOB_READ_WRITE_TOKEN ? {} : { staticDir: 'media' }),
         mimeTypes: ['image/*'],
       },
       fields: [
@@ -80,7 +83,7 @@ export default buildConfig({
   ],
   plugins: [
     vercelBlobStorage({
-      enabled: process.env.BLOB_READ_WRITE_TOKEN !== undefined,
+      enabled: true,
       collections: {
         media: true,
       },
@@ -88,11 +91,11 @@ export default buildConfig({
       clientUploads: true,
     }),
   ],
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: process.env.PAYLOAD_SECRET,
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL,
     },
   }),
   sharp,
-});
+})
