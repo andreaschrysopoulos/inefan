@@ -1,8 +1,8 @@
 import sharp from 'sharp'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { buildConfig } from 'payload'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 // Debug logging to confirm environment variables
 // console.log('BLOB_READ_WRITE_TOKEN:', process.env.BLOB_READ_WRITE_TOKEN)
@@ -11,6 +11,14 @@ import { buildConfig } from 'payload'
 
 export default buildConfig({
   editor: lexicalEditor(),
+
+  secret: process.env.PAYLOAD_SECRET,
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URL,
+    },
+  }),
+
   collections: [
     {
       slug: 'articles',
@@ -56,8 +64,8 @@ export default buildConfig({
         {
           name: 'content',
           type: 'richText',
-          required: true,
           editor: lexicalEditor(),
+          required: true,
         },
         {
           name: 'image',
@@ -72,6 +80,9 @@ export default buildConfig({
       upload: {
         mimeTypes: ['image/*'],
       },
+      access: {
+        read: () => true, // Public access to media files
+      },
       fields: [
         {
           name: 'alt',
@@ -81,6 +92,7 @@ export default buildConfig({
       ],
     },
   ],
+
   plugins: [
     vercelBlobStorage({
       enabled: true,
@@ -91,11 +103,6 @@ export default buildConfig({
       clientUploads: true,
     }),
   ],
-  secret: process.env.PAYLOAD_SECRET,
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URL,
-    },
-  }),
+
   sharp,
 })

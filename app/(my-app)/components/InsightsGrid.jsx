@@ -1,32 +1,55 @@
-import { articles } from "../assets/database"
+// import { articles } from "../assets/database"
 import InsightCard from "./InsightCard"
+import { getPayload } from "payload"
+import config from '../../../payload.config'; // Static import
 
-export default function InsightsGrid({ selected }) {
+
+export default async function InsightsGrid({ selected }) {
+
+  const payload = await getPayload({ config })
+
+  // Fetch all posts
+  const articles = await payload.find({
+    collection: 'articles',
+    sort: '-date', // Newest first
+  });
 
   const displayArticles = () => {
 
     // If no filter is active, display all articles
     if (!selected.length) {
-      return articles.map(article =>
-        <InsightCard
-          key={article.key}
-          category={article.category.toUpperCase()}
-          title={article.title}
-          picture={article.picture}
-          date={article.date}
-          slug={article.slug}
-        />)
+      if (articles.docs.length) {
+        return articles.docs.map(article =>
+          < InsightCard
+            key={article.id}
+            category={article.category.toUpperCase()}
+            title={article.title}
+            picture={`api/media/file/${article.image.filename}`}
+            date={new Date(article.date).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+            slug={article.slug}
+          />)
+      }
+      else
+        return <div className='max-w-79 min-w-79 h-full text-lg opacity-80'>No articles found.</div>
     }
 
     // If filter is active, put matching articles in variable
-    const filteredArticles = articles.map(article => {
+    const filteredArticles = articles.docs.map(article => {
       if (selected.includes(article.category)) {
         return <InsightCard
-          key={article.key}
+          key={article.id}
           category={article.category.toUpperCase()}
           title={article.title}
-          picture={article.picture}
-          date={article.date}
+          picture={`api/media/file/${article.image.filename}`}
+          date={new Date(article.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
           slug={article.slug}
         />
       }
@@ -36,7 +59,7 @@ export default function InsightsGrid({ selected }) {
 
     // If variable is not made of null values, matching articles were found, so display them.
     // Otherwise show "No articles found."
-    if (filteredArticles.some((article) => article !== null))
+    if (filteredArticles.some(article => article !== null))
       return filteredArticles
     else
       return <div className='max-w-79 min-w-79 h-full text-lg opacity-80'>No matching articles found.</div>

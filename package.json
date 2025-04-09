@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.33.0",
-    "@payloadcms/db-sqlite": "^3.33.0",
     "@payloadcms/next": "^3.33.0",
     "@payloadcms/richtext-lexical": "^3.33.0",
     "@payloadcms/storage-vercel-blob": "^3.33.0",
@@ -24,8 +23,10 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/react": "19.1.0",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "typescript": "5.8.3"
   }
 }
