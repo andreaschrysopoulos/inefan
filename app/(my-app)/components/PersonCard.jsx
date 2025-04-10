@@ -99,7 +99,7 @@ const CardTeamMember = ({ name, role, bio, img, linkedin }) => {
           <img ref={popupCloseBtnDark} src="/close-dark.svg" className="absolute right-5 top-5 cursor-pointer fa-regular fa-xmark w-6 h-6 opacity-30 hover:opacity-60 active:opacity-60 transition-all duration-200 self-end hidden dark:block"></img>
 
           {/* Card Content */}
-          <div className="p-7 team3:p-10 w-fit flex flex-col items-center">
+          <div className="p-7 team3:p-10 w-fit flex flex-col items-center self-center">
 
             {/* Photo */}
             <img className="w-50 rounded-full shadow-lg" src={img} alt="photo" />

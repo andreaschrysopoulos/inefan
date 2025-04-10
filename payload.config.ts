@@ -28,6 +28,26 @@ export default buildConfig({
       },
       fields: [
         {
+          name: 'category',
+          type: 'select',
+          options: ['International', 'Business', 'Financial', 'Economics'],
+          required: true,
+          admin: {
+            position: 'sidebar',
+          },
+        },
+        {
+          name: 'date',
+          type: 'date',
+          required: true,
+          admin: {
+            position: 'sidebar',
+            date: {
+              pickerAppearance: 'dayOnly',
+            },
+          },
+        },
+        {
           name: 'slug',
           type: 'text',
           required: true,
@@ -37,29 +57,22 @@ export default buildConfig({
           },
         },
         {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+        {
           name: 'title',
           type: 'text',
+          maxLength: 80,
           required: true,
         },
-        {
-          name: 'category',
-          type: 'text',
-          required: true,
-        },
+
         {
           name: 'subtitle',
-          type: 'text',
+          type: 'textarea',
           required: true,
-        },
-        {
-          name: 'date',
-          type: 'date',
-          required: true,
-          admin: {
-            date: {
-              pickerAppearance: 'dayOnly',
-            },
-          },
         },
         {
           name: 'content',
@@ -67,16 +80,19 @@ export default buildConfig({
           editor: lexicalEditor(),
           required: true,
         },
-        {
-          name: 'image',
-          type: 'upload',
-          relationTo: 'media',
-          required: true,
-        },
       ],
     },
     {
       slug: 'media',
+      admin: {
+        defaultColumns: [
+          'filename',
+          'width',
+          'height',
+          'createdAt',
+          'filesize',
+        ],
+      },
       upload: {
         mimeTypes: ['image/*'],
       },
@@ -87,6 +103,44 @@ export default buildConfig({
         {
           name: 'alt',
           type: 'text',
+          required: false,
+        },
+      ],
+    },
+    {
+      slug: 'boardMembers',
+      admin: {
+        defaultColumns: [
+          'name',
+          'role',
+          'photo',
+        ]
+      },
+      fields: [
+        {
+          name: 'name',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'role',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'photo',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+        {
+          name: 'linkedin',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'bio',
+          type: 'textarea',
           required: true,
         },
       ],

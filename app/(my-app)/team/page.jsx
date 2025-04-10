@@ -1,12 +1,22 @@
 import CardTeamMember from "../components/PersonCard";
-import { members } from "../assets/database";
+import config from "../../../payload.config";
+import { getPayload } from "payload";
 
 export const metadata = {
   title: "Inefan - Team",
   description: "Independent Economic & Financial Analysis",
 };
 
-const Team = () => {
+export default async function Team() {
+
+  const payload = await getPayload({ config })
+
+  const membersDocs = await payload.find({
+    collection: 'boardMembers'
+  })
+
+  const members = membersDocs.docs
+  console.log(members);
 
   return (
     <>
@@ -22,11 +32,11 @@ const Team = () => {
           <div className={`grid gap-10 grid-cols-1 team2:grid-cols-2 team3:grid-cols-3 self-center min-w-70 team2:min-w-168 team3:min-w-258 transition-opacity duration-400`}>
             {members.map((member) => (
               <CardTeamMember
-                key={member.key}
+                key={member.id}
                 name={member.name}
                 role={member.role}
                 bio={member.bio}
-                img={member.img}
+                img={`/api/media/file/${member.photo.filename}`}
                 linkedin={member.linkedin}
               />
             ))}
@@ -37,5 +47,3 @@ const Team = () => {
     </>
   );
 };
-
-export default Team;
