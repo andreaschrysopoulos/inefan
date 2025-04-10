@@ -56,7 +56,7 @@ export default async function SingleInsight({ params }) {
 
             {/* Photo */}
             <div className="w-full team2:h-100 h-70 overflow-hidden rounded-xl mb-5">
-              <img src={`/api/media/file/${article.image.filename}`} alt="" className='object-cover size-full' />
+              <img src={article.image.url} alt="" className='object-cover size-full' />
             </div>
 
             {/* Article Content */}

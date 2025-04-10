@@ -24,7 +24,7 @@ export default async function InsightsGrid({ selected }) {
             key={article.id}
             category={article.category.toUpperCase()}
             title={article.title}
-            picture={`api/media/file/${article.image.filename}`}
+            picture={article.image.url}
             date={new Date(article.date).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
@@ -44,7 +44,7 @@ export default async function InsightsGrid({ selected }) {
           key={article.id}
           category={article.category.toUpperCase()}
           title={article.title}
-          picture={`api/media/file/${article.image.filename}`}
+          picture={article.image.url}
           date={new Date(article.date).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',

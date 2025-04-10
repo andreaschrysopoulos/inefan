@@ -28,7 +28,7 @@ export default async function Insights({ searchParams }) {
 
 
         {/* Articles */}
-        <InsightsGrid selected={selectedFilters} />
+        {/* <InsightsGrid selected={selectedFilters} /> */}
 
       </div>
 

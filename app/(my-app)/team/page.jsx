@@ -36,7 +36,7 @@ export default async function Team() {
                 name={member.name}
                 role={member.role}
                 bio={member.bio}
-                img={`/api/media/file/${member.photo.filename}`}
+                img={member.photo.url}
                 linkedin={member.linkedin}
               />
             ))}
