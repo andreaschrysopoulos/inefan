@@ -5,6 +5,8 @@ import { useRouter, usePathname } from 'next/navigation'
 
 
 export default function BlogFilter({ selectedFilters }) {
+
+
   const router = useRouter()
   const pathname = usePathname()
 
@@ -12,18 +14,27 @@ export default function BlogFilter({ selectedFilters }) {
   const [selected, setSelected] = useState(selectedFilters);
 
   function arrayToQueryString(arr) {
-    return "?" + arr.map(value => `category=${encodeURIComponent(value)}`).join("&");
+    const query = arr.map(value => `category=${encodeURIComponent(value)}`).join("&");
+    if (query)
+      return '?' + query
+    else
+      return ""
   }
 
-  const toggleCategory = (category) => {
+  function toggleCategory(category) {
     setSelected(prev =>
       prev.includes(category) ? prev.filter(item => item !== category) : [...prev, category]
     );
   };
 
   useEffect(() => {
-    router.replace(pathname + arrayToQueryString(selected), { scroll: false });
-  }, [selected, router, pathname]);
+    const newUrl = pathname + arrayToQueryString(selected);
+    console.log(newUrl);
+    // Only replace the URL if it's different
+    if (newUrl !== window.location.pathname + window.location.search) {
+      router.replace(newUrl, { scroll: false });
+    }
+  }, [selected]);
 
   const isToggled = (category) => {
     return selected.includes(category) ? 'bg-stone-300 dark:bg-stone-800' : 'bg-stone-200 dark:bg-stone-900 active:bg-[#dbdad8] hover:bg-[#dbdad8] dark:hover:bg-stone-800 dark:active:bg-stone-800'

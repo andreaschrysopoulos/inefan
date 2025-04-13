@@ -39,7 +39,7 @@ export default async function InsightsGrid({ selected }) {
 
     // If filter is active, put matching articles in variable
     const filteredArticles = articles.docs.map(article => {
-      if (selected.includes(article.category)) {
+      if (selected.includes(article.category.toLowerCase())) {
         return <InsightCard
           key={article.id}
           category={article.category.toUpperCase()}

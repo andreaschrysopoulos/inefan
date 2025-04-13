@@ -16,7 +16,7 @@ export default async function Team() {
   })
 
   const members = membersDocs.docs
-  console.log(members);
+  // console.log(members);
 
   return (
     <>

@@ -20,7 +20,6 @@ export default async function Insights({ searchParams }) {
         {/* Page Subtitle */}
         <span className='team3:text-3xl text-2xl team3:mb-10 team2:mb-8 mb-5 dark:text-stone-400 text-stone-500 w-fit'>Explore insightful and thought-provoking articles curated by our editorial team.</span>
 
-
         {/* Filter */}
         <div>
           <BlogFilter selectedFilters={selectedFilters} />

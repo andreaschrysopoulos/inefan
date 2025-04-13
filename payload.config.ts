@@ -20,6 +20,7 @@ export default buildConfig({
   }),
 
   collections: [
+    // Articles
     {
       slug: 'articles',
       admin: {
@@ -82,6 +83,7 @@ export default buildConfig({
         },
       ],
     },
+    // Media & PDFs
     {
       slug: 'media',
       admin: {
@@ -94,7 +96,7 @@ export default buildConfig({
         ],
       },
       upload: {
-        mimeTypes: ['image/*'],
+        mimeTypes: ['image/*', 'application/pdf'],
       },
       access: {
         read: () => true, // Public access to media files
@@ -107,25 +109,27 @@ export default buildConfig({
         },
       ],
     },
+    // Team
     {
       slug: 'boardMembers',
       admin: {
-        defaultColumns: [
-          'name',
-          'role',
-          'photo',
-        ]
+        defaultColumns: ['name', 'role', 'photo'],
       },
       fields: [
         {
-          name: 'name',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'role',
-          type: 'text',
-          required: true,
+          type: 'row',
+          fields: [
+            {
+              name: 'name',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'role',
+              type: 'text',
+              required: true,
+            },
+          ],
         },
         {
           name: 'photo',
@@ -141,6 +145,41 @@ export default buildConfig({
         {
           name: 'bio',
           type: 'textarea',
+          required: true,
+        },
+      ],
+    },
+    // Weekly Reports
+    {
+      slug: 'weeklyReports',
+      admin: {
+        defaultColumns: ['name', 'timePeriodStart', 'timePeriodEnd'],
+      },
+      fields: [
+        {
+          name: 'name',
+          type: 'text',
+          required: true,
+        },
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'timePeriodStart',
+              type: 'date',
+              required: true,
+            },
+            {
+              name: 'timePeriodEnd',
+              type: 'date',
+              required: true,
+            },
+          ],
+        },
+        {
+          name: 'reportFile',
+          type: 'upload',
+          relationTo: 'media',
           required: true,
         },
       ],

@@ -41,9 +41,6 @@ export default function ReportsPage() {
               <th className="font-bold px-2 team3:px-3 py-2 team3:py-2.5">
                 Date Uploaded
               </th>
-              <th className="font-bold px-2 team3:px-3 py-2 team3:py-2.5">
-                Author
-              </th>
               <th className="font-bold team3:pr-5 pr-3 team3:pl-3 pl-2 text-right y-2 team3:py-2.5">
                 PDF
               </th>
@@ -62,7 +59,6 @@ export default function ReportsPage() {
                 </td>
                 <td className="px-2 team3:px-3">{report.subtitle}</td>
                 <td className="px-2 team3:px-3">{report.date}</td>
-                <td className="px-2 team3:px-3">Financial Analysis Team</td>
                 <td className="team3:pr-5 pr-3 team3:pl-3 pl-2 text-right">
                   <a
                     className="font-medium transition-colors duration-200 ease-in-out dark:text-blue-500/90 text-blue-500/90 hover:dark:text-blue-400/90 hover:text-blue-600/90 active:dark:text-blue-400/90 active:text-blue-600/90"
