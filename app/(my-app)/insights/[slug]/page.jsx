@@ -74,7 +74,7 @@ export default async function SingleInsight({ params }) {
             </div>
 
             {/* Photo */}
-            <div className="w-full team2:h-100 h-70 overflow-hidden rounded-xl mb-5">
+            <div className="relative w-full team2:h-100 h-70 overflow-hidden rounded-xl mb-5">
               <Image src={article.image.url} alt="Article Image" className='object-cover size-full' fill priority />
             </div>
 
