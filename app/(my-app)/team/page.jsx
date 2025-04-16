@@ -18,6 +18,9 @@ export default async function Team() {
   const members = membersDocs.docs
   // console.log(members);
 
+  // const serverTimestamp = new Date().toISOString();
+  // console.log(`Built '/team' at [${serverTimestamp}]`);
+
   return (
     <>
       <div className="flex flex-auto pb-20 px-5 relative">
@@ -27,7 +30,7 @@ export default async function Team() {
             <span className={`font-semibold team3:text-6xl text-5xl mb-2`}>Inefan Board</span>
             <span className={`font team3:text-3xl text-2xl mb-10 dark:text-stone-400 text-stone-600`}>The Board of Directors at Inefan leads with diverse expertise in economics, finance, and entrepreneurship, guiding our mission to connect youth with education and career opportunities.</span>
           </div>
-
+          {/* <p className="text-sm text-gray-500">Server render: {serverTimestamp}</p> */}
           {/* Board */}
           <div className={`grid gap-10 grid-cols-1 team2:grid-cols-2 team3:grid-cols-3 self-center min-w-70 team2:min-w-168 team3:min-w-258 transition-opacity duration-400`}>
             {members.map((member) => (

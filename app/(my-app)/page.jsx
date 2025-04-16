@@ -1,19 +1,19 @@
 import Link from "next/link";
-// import { useState, useEffect } from "react";
 import { reports } from ".//assets/database";
 
 const HomePage = () => {
-  // const [isLoaded, setIsLoaded] = useState(false);
 
-  // useEffect(() => {
-  //   setIsLoaded(true);
-  // }, []);
+  // const serverTimestamp = new Date().toISOString();
+  // console.log(`Built '/' at [${serverTimestamp}]`);
+
 
   return (
     <div className="flex flex-auto justify-center items-center team2:px-5 mb-5">
       <div
         className={`grid team3:grid-cols-2 w-full gap-5 transition-opacity duration-400`}
       >
+        {/* <p className="text-sm text-gray-500">Server render: {serverTimestamp}</p> */}
+
         {/* Become a member */}
         <div className="min-w-[310px] relative h-80 bg-stone-500 team2:hover:scale-[1.01] team2:active:scale-[1.01] transition-transform duration-300 ease-in-out will-change-transform team3:col-span-2">
           {/* Image */}

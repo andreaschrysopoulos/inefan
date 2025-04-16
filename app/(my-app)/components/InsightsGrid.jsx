@@ -3,8 +3,7 @@ import InsightCard from "./InsightCard"
 import { getPayload } from "payload"
 import config from '../../../payload.config'; // Static import
 
-
-export default async function InsightsGrid({ selected }) {
+export default async function InsightsGrid() {
 
   const payload = await getPayload({ config })
 
@@ -15,32 +14,9 @@ export default async function InsightsGrid({ selected }) {
   });
 
   const displayArticles = () => {
-
-    // If no filter is active, display all articles
-    if (!selected.length) {
-      if (articles.docs.length) {
-        return articles.docs.map(article =>
-          < InsightCard
-            key={article.id}
-            category={article.category.toUpperCase()}
-            title={article.title}
-            picture={article.image.url}
-            date={new Date(article.date).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-            slug={article.slug}
-          />)
-      }
-      else
-        return <div className='max-w-79 min-w-79 h-full text-lg opacity-80'>No articles found.</div>
-    }
-
-    // If filter is active, put matching articles in variable
-    const filteredArticles = articles.docs.map(article => {
-      if (selected.includes(article.category.toLowerCase())) {
-        return <InsightCard
+    if (articles.docs.length) {
+      return articles.docs.map(article =>
+        < InsightCard
           key={article.id}
           category={article.category.toUpperCase()}
           title={article.title}
@@ -51,18 +27,10 @@ export default async function InsightsGrid({ selected }) {
             day: 'numeric',
           })}
           slug={article.slug}
-        />
-      }
-      else
-        return null
-    })
-
-    // If variable is not made of null values, matching articles were found, so display them.
-    // Otherwise show "No articles found."
-    if (filteredArticles.some(article => article !== null))
-      return filteredArticles
+        />)
+    }
     else
-      return <div className='max-w-79 min-w-79 h-full text-lg opacity-80'>No matching articles found.</div>
+      return <div className='max-w-79 min-w-79 h-full text-lg opacity-80'>No articles found.</div>
   }
 
   return (

@@ -12,7 +12,7 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 export default buildConfig({
   editor: lexicalEditor(),
 
-  secret: process.env.PAYLOAD_SECRET,
+  secret: process.env.PAYLOAD_SECRET!,
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL,
@@ -26,6 +26,44 @@ export default buildConfig({
       admin: {
         useAsTitle: 'title',
         defaultColumns: ['title', 'category', 'date', 'image'],
+      },
+      hooks: {
+        afterChange: [
+          async ({ doc, operation }) => {
+            if (['create', 'update'].includes(operation)) {
+              try {
+                await fetch(
+                  `${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?secret=${process.env.REVALIDATE_SECRET}&path=/insights/${doc.slug}`
+                )
+                await fetch(
+                  `${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?secret=${process.env.REVALIDATE_SECRET}&path=/insights`
+                )
+                // console.log(
+                //   'revalidated due to change: ' + `/insights/${doc.slug}`
+                // )
+              } catch (err) {
+                console.error('Revalidation (change) failed:', err)
+              }
+            }
+          },
+        ],
+        afterDelete: [
+          async ({ doc }) => {
+            try {
+              await fetch(
+                `${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?secret=${process.env.REVALIDATE_SECRET}&path=/insights/${doc.slug}`
+              )
+              await fetch(
+                `${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?secret=${process.env.REVALIDATE_SECRET}&path=/insights`
+              )
+              // console.log(
+              //   'revalidated due to deletion: ' + `/insights/${doc.slug}`
+              // )
+            } catch (err) {
+              console.error('Revalidation (delete) failed:', err)
+            }
+          },
+        ],
       },
       fields: [
         {
@@ -114,6 +152,34 @@ export default buildConfig({
       slug: 'boardMembers',
       admin: {
         defaultColumns: ['name', 'role', 'photo'],
+      },
+      hooks: {
+        afterChange: [
+          async ({ operation }) => {
+            if (['create', 'update'].includes(operation)) {
+              try {
+                await fetch(
+                  `${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?secret=${process.env.REVALIDATE_SECRET}&path=/team`
+                )
+                // console.log("Revalidated due to change: /team");
+              } catch (err) {
+                console.error('Revalidation (change) failed:', err)
+              }
+            }
+          },
+        ],
+        afterDelete: [
+          async () => {
+            try {
+              await fetch(
+                `${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?secret=${process.env.REVALIDATE_SECRET}&path=/team`
+              )
+              // console.log("Revalidated due to change: /team");
+            } catch (err) {
+              console.error('Revalidation (delete) failed:', err)
+            }
+          },
+        ],
       },
       fields: [
         {

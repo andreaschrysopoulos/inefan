@@ -4,7 +4,22 @@ import { getPayload } from "payload"
 import config from '../../../../payload.config'; // Static import
 import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html';
 
+
+export async function generateStaticParams() {
+  const payload = await getPayload({ config });
+  const articles = await payload.find({
+    collection: 'articles',
+    limit: 1000, // Adjust as needed
+  });
+
+  return articles.docs.map((article) => ({
+    slug: article.slug,
+  }));
+}
+
 export default async function SingleInsight({ params }) {
+
+
   const { slug } = await params
   const payload = await getPayload({ config })
 
@@ -24,11 +39,15 @@ export default async function SingleInsight({ params }) {
 
   const content = convertLexicalToHTML({ data: article.content });
 
+  // const serverTimestamp = new Date().toISOString();
+  // console.log(`Built '/insights/${slug}' at [${serverTimestamp}]`);
+
   return (
     <>
       {
         <div className="flex flex-col flex-auto px-5 pb-10">
           <div className="flex flex-col size-full max-w-5xl mx-auto">
+        {/* <p className="text-sm text-gray-500">Server render: {serverTimestamp}</p> */}
 
             {/* Back Button */}
             {/* <Link to="/insights" className='mb-3 w-fit'>Back</Link> */}

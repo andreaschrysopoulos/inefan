@@ -6,14 +6,16 @@ export const metadata = {
   description: "Independent Economic & Financial Analysis",
 };
 
-export default async function Insights({ searchParams }) {
+export default function Insights() {
 
-  const params = await searchParams;
-  const selectedFilters = params?.category ? (Array.isArray(params.category) ? params.category : [params.category]) : [];
+  // const serverTimestamp = new Date().toISOString();
+  // console.log(`Built '/insights' at [${serverTimestamp}]`);
 
   return (
     <div className='flex-auto flex flex-col justify-start pb-15 px-5'>
       <div className="max-w-5xl mx-auto flex flex-col w-70 team2:w-168 team3:w-min">
+        {/* Render Time Stamp */}
+      {/* <p className="text-sm text-gray-500">Server render: {serverTimestamp}</p> */}
 
         {/* Page Header */}
         <span className='font-semibold team3:text-6xl text-5xl mb-2'>Inefan Insights</span>
@@ -22,17 +24,15 @@ export default async function Insights({ searchParams }) {
 
         {/* Filter */}
         <div>
-          <BlogFilter selectedFilters={selectedFilters} />
+          {/* <BlogFilter selectedFilters={selectedFilters} /> */}
         </div>
 
 
         {/* Articles */}
-        <InsightsGrid selected={selectedFilters} />
+        <InsightsGrid />
 
       </div>
 
     </div>
   )
 }
-
-export const revalidate = 10;
