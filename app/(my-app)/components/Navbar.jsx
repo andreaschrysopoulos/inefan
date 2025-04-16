@@ -44,7 +44,7 @@ function Navbar() {
       className="bg-stone-50/80 backdrop-blur-xl saturate-180 dark:bg-stone-900/80 fixed z-10 top-0 left-0 flex flex-col items-center w-full border-b dark:border-b-stone-800 border-b-stone-200 px-5 translate-3d"
     >
       {/* Container */}
-      <div className="flex max-w-5xl justify-between items-center w-full gap-5">
+      <div className="flex max-w-5xl justify-between items-center w-full gap-5 h-13">
         {/* 1. Logo */}
         <Link href="/">
           {/* 1.1 Light Logo */}
