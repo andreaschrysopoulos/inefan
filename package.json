@@ -14,19 +14,23 @@
     "@payloadcms/richtext-lexical": "^3.33.0",
     "@payloadcms/storage-vercel-blob": "^3.33.0",
     "graphql": "^16.10.0",
-    "next": "15.2.4",
+    "next": "^15.3.0",
     "payload": "^3.33.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "sharp": "^0.34.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "@types/react": "19.1.0",
+    "@types/react": "^19.1.2",
     "eslint": "^9",
-    "eslint-config-next": "15.2.4",
+    "eslint-config-next": "^15.3.0",
     "tailwindcss": "^4",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "esbuild": "^0.25.0"
+  },
+  "overrides": {
+    "esbuild": "^0.25.0"
   }
 }

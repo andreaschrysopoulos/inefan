@@ -3,7 +3,7 @@ import Custom404 from '../../not-found'
 import { getPayload } from "payload"
 import config from '../../../../payload.config'; // Static import
 import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html';
-
+import Image from 'next/image';
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config });
@@ -75,7 +75,7 @@ export default async function SingleInsight({ params }) {
 
             {/* Photo */}
             <div className="w-full team2:h-100 h-70 overflow-hidden rounded-xl mb-5">
-              <img src={article.image.url} alt="" className='object-cover size-full' />
+              <Image src={article.image.url} alt="Article Image" className='object-cover size-full' fill priority />
             </div>
 
             {/* Article Content */}

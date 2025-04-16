@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export default function InsightCard({ title, category, date, picture, slug }) {
 
@@ -9,8 +10,8 @@ export default function InsightCard({ title, category, date, picture, slug }) {
       <div className='group flex flex-col h-full rounded-4xl bg-white dark:bg-stone-900'>
 
         {/* 1. Photo */}
-        <div className="h-43 min-h-43 overflow-hidden rounded-tl-4xl rounded-tr-4xl">
-          <img className='size-full object-cover transition-all duration-400 ease-in-out group-hover:scale-[1.03] group-active:scale-[1.03] will-change-transform' src={picture} />
+        <div className="relative h-43 min-h-43 overflow-hidden rounded-tl-4xl rounded-tr-4xl">
+          <Image className='size-full object-cover transition-all duration-400 ease-in-out group-hover:scale-[1.03] group-active:scale-[1.03] will-change-transform' src={picture} alt="Article Image" fill priority />
         </div>
 
 

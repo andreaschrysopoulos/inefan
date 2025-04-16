@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { reports } from ".//assets/database";
 
 const HomePage = () => {
@@ -17,7 +18,7 @@ const HomePage = () => {
         {/* Become a member */}
         <div className="min-w-[310px] relative h-80 bg-stone-500 team2:hover:scale-[1.01] team2:active:scale-[1.01] transition-transform duration-300 ease-in-out will-change-transform team3:col-span-2">
           {/* Image */}
-          <img className="object-cover size-full" src="/member.jpg" alt="" />
+          <Image className="object-cover size-full" src="/member.jpg" alt="Become a member" fill priority/>
 
           <div className="absolute top-0 left-0 size-full team2:p-10 p-8 flex flex-col gap-2 justify-center items-center transition-all duration-300 ease-in-out hover:backdrop-brightness-110 active:backdrop-brightness-110 cursor-default text-white backdrop-blur-xs">
             {/* Heading */}
@@ -49,7 +50,7 @@ const HomePage = () => {
 
         {/* Financial Reports */}
         <div className="min-w-[310px] relative h-80 bg-stone-300 team2:hover:scale-[1.01] team2:active:scale-[1.01] transition-transform duration-300 ease-in-out will-change-transform">
-          <img className="object-cover size-full" src="/stock.jpg" alt="" />
+          <Image className="object-cover size-full" src="/stock.jpg" alt="Read our reports" fill priority/>
           <div className="absolute top-0 left-0 size-full team2:p-10 p-8 flex flex-col gap-2 justify-center items-center transition-all duration-300 ease-in-out hover:backdrop-brightness-110 cursor-default text-white backdrop-blur-xs">
             <span className="team2:text-5xl text-4xl text-center font-semibold">
               Financial Reports
@@ -78,7 +79,7 @@ const HomePage = () => {
 
         {/* Inefan Insights */}
         <div className="min-w-[310px] relative h-80 bg-stone-400 team2:hover:scale-[1.01] team2:active:scale-[1.01] transition-transform duration-300 ease-in-out will-change-transform">
-          <img className="object-cover size-full" src="/insights.jpg" alt="" />
+          <Image className="object-cover size-full" src="/insights.jpg" alt="Check out our articles" fill priority/>
           <div className="absolute top-0 left-0 size-full team2:p-10 p-8 flex flex-col gap-2 justify-center items-center transition-all duration-300 ease-in-out hover:backdrop-brightness-110 cursor-default text-white backdrop-blur-xs">
             <span className="team2:text-5xl text-4xl text-center font-semibold">
               Inefan Insights
