@@ -221,6 +221,38 @@ export default buildConfig({
       admin: {
         defaultColumns: ['name', 'timePeriodStart', 'timePeriodEnd'],
       },
+      hooks: {
+        afterChange: [
+          async ({ doc, operation }) => {
+            if (['create', 'update'].includes(operation)) {
+              try {
+                await fetch(
+                  `${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?secret=${process.env.REVALIDATE_SECRET}&path=/reports`
+                )
+                // console.log(
+                //   'revalidated due to change: ' + `/insights/${doc.slug}`
+                // )
+              } catch (err) {
+                console.error('Revalidation (change) failed:', err)
+              }
+            }
+          },
+        ],
+        afterDelete: [
+          async ({ doc }) => {
+            try {
+              await fetch(
+                `${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?secret=${process.env.REVALIDATE_SECRET}&path=/reports`
+              )
+              // console.log(
+              //   'revalidated due to deletion: ' + `/insights/${doc.slug}`
+              // )
+            } catch (err) {
+              console.error('Revalidation (delete) failed:', err)
+            }
+          },
+        ],
+      },
       fields: [
         {
           name: 'name',
