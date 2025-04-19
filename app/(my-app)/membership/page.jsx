@@ -5,7 +5,7 @@ export default function MembershipPage() {
   return <>
 
     {/* HERO */}
-    <div className='flex-auto flex flex-col justify-start pb-15 pt-10 mt-[-22px] px-5 bg-stone-200'>
+    <div className='flex-auto flex flex-col justify-start pb-15 pt-15 mt-[-23px] px-5 bg-stone-200'>
       <div className="max-w-5xl mx-auto flex flex-col gap-10">
         <div className="grid gap-x-10 gap-y-6 membershipHeroWrap:grid-cols-[2fr_1.3fr] grid-cols-1 items-center">
 
@@ -19,7 +19,7 @@ export default function MembershipPage() {
             <div className="flex gap-7 items-center team2:mt-4 mt-2">
               <button className="rounded-full team2:px-8 px-6 team2:py-1.5 py-1 team2:text-lg bg-stone-900 dark:bg-stone-200 dark:text-stone-900 text-stone-100 hover:dark:bg-stone-100 hover:bg-stone-800 hover:cursor-pointer w-fit transition-colors duration-150 ease-in-out">Apply now</button>
 
-              <button className="rounded-full team2:text-lg hover:cursor-pointer w-fit transition-colors duration-150 ease-in-out">Learn more</button>
+              <a href="#learn-more" className="rounded-full team2:text-lg hover:cursor-pointer w-fit transition-colors duration-150 ease-in-out">Learn more</a>
 
             </div>
           </div>
@@ -34,7 +34,7 @@ export default function MembershipPage() {
     </div>
 
     {/* SEMINARS */}
-    <div className='flex-auto flex flex-col justify-start pt-20 px-5'>
+    <div id="learn-more" className='flex-auto flex flex-col justify-start pt-25 px-5'>
       <div className="max-w-5xl mx-auto flex flex-col gap-10">
         <div className="grid gap-x-10 gap-y-4 membershipHeroWrap:grid-cols-[1fr_2fr] items-center">
 
@@ -57,7 +57,7 @@ export default function MembershipPage() {
     </div>
 
     {/* JOIN A TEAM */}
-    <div className='flex-auto flex flex-col justify-start pt-20 px-5'>
+    <div className='flex-auto flex flex-col justify-start pt-25 px-5'>
       <div className="max-w-5xl mx-auto flex flex-col gap-10">
         <div className="grid gap-x-10 gap-y-4 membershipHeroWrap:grid-cols-[2fr_1fr] items-center">
 
@@ -80,7 +80,7 @@ export default function MembershipPage() {
     </div>
 
     {/* VISIT COMPANIES */}
-    <div className='flex-auto flex flex-col justify-start pt-20 px-5'>
+    <div className='flex-auto flex flex-col justify-start pt-25 px-5'>
       <div className="max-w-5xl mx-auto flex flex-col gap-10">
         <div className="grid gap-x-10 gap-y-4 membershipHeroWrap:grid-cols-[1fr_2fr] items-center">
 
@@ -103,7 +103,7 @@ export default function MembershipPage() {
     </div>
 
     {/* CAREER OPPORTUNITIES */}
-    <div className='flex-auto flex flex-col justify-start pt-20 px-5'>
+    <div className='flex-auto flex flex-col justify-start pt-25 mb-25 px-5'>
       <div className="max-w-5xl mx-auto flex flex-col gap-10">
         <div className="grid gap-x-10 gap-y-4 membershipHeroWrap:grid-cols-[2fr_1fr] items-center">
 
@@ -122,6 +122,19 @@ export default function MembershipPage() {
           <img className="min-w-68 rounded-2xl max-h-80 object-cover mb-5 aspect-[1.5/1] not-membershipHeroWrap:h-50 w-full" src="/career.avif" alt="seminar picture" />
 
         </div>
+      </div>
+    </div>
+
+    {/* CTA */}
+    <div className='flex-auto flex flex-col justify-start pb-10 pt-10 mt-[-23px] px-5 bg-stone-200'>
+      <div className="max-w-5xl mx-auto flex flex-col gap-10">
+
+        <div className="w-full border">
+          asdf
+        </div>
+
+
+
       </div>
     </div>
 

@@ -20,7 +20,7 @@ export default function Insights() {
         {/* Page Header */}
         <span className='font-semibold team3:text-6xl text-5xl mb-2'>Inefan Insights</span>
         {/* Page Subtitle */}
-        <span className='team3:text-3xl text-2xl team3:mb-10 team2:mb-8 mb-5 dark:text-stone-400 text-stone-500 w-fit'>Explore insightful and thought-provoking articles curated by our editorial team.</span>
+        <span className='team3:text-3xl text-2xl dark:text-stone-400 text-stone-500 w-fit mb-5'>Explore insightful and thought-provoking articles curated by our editorial team.</span>
 
         {/* Filter */}
         <div>
