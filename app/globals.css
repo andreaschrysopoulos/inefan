@@ -1,0 +1,43 @@
+@import 'tailwindcss';
+
+@theme {
+  --breakpoint-team2: 705px;
+  --breakpoint-team3: 1060px;
+
+  --breakpoint-membershipHeroWrap: 800px;
+
+  --breakpoint-blogMedium: 640px;
+  --breakpoint-blogLarge: 960px;
+}
+
+/* h1 {
+  @apply text-3xl mb-4;
+}
+
+h2 {
+  @apply text-2xl mb-4;
+}
+
+h3 {
+  @apply text-xl mb-4;
+}
+
+h4 {
+  @apply text-lg mb-4;
+}
+
+h5 {
+  @apply text-lg mb-4;
+}
+
+h6 {
+  @apply text-lg mb-4;
+}
+
+p {
+  @apply mb-3;
+}
+
+a {
+  @apply underline;
+} */
