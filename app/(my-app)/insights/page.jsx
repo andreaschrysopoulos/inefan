@@ -8,8 +8,8 @@ export const metadata = {
 
 export default function Insights() {
 
-  // const serverTimestamp = new Date().toISOString();
-  // console.log(`Built '/insights' at [${serverTimestamp}]`);
+  const serverTimestamp = new Date().toISOString();
+  console.log(`Built '/insights' at [${serverTimestamp}]`);
 
   return (
     <div className='flex-auto flex flex-col justify-start pb-15 px-5'>

@@ -5,7 +5,7 @@ export default function MembershipPage() {
   return <>
 
     {/* HERO */}
-    <div className='flex-auto flex flex-col justify-start pb-15 pt-15 mt-[-23px] px-5 bg-stone-200'>
+    <div className='flex-auto flex flex-col justify-start pb-15 pt-15 mt-[-23px] px-5 bg-stone-200 dark:bg-stone-900'>
       <div className="max-w-5xl mx-auto flex flex-col gap-10">
         <div className="grid gap-x-10 gap-y-6 membershipHeroWrap:grid-cols-[2fr_1.3fr] grid-cols-1 items-center">
 
@@ -126,14 +126,20 @@ export default function MembershipPage() {
     </div>
 
     {/* CTA */}
-    <div className='flex-auto flex flex-col justify-start pb-10 pt-10 mt-[-23px] px-5 bg-stone-200'>
+    <div className='flex-auto flex flex-col justify-start pb-10 pt-10 mt-[-23px] px-5 bg-stone-200 dark:bg-stone-900'>
       <div className="max-w-5xl mx-auto flex flex-col gap-10">
 
-        <div className="w-full border">
-          asdf
+        <div className="flex w-5xl">
+          <div className="flex flex-col min-w-68 items-start w-2xl">
+            <div className="team2:text-6xl text-5xl font-medium team2:mb-3 mb-1.5">Join the team!</div>
+
+
+            <div className="team2:text-xl text-lg font-light team2:mb-7 mb-3 dark:text-stone-300">Become a member of Inefan — a dynamic, student-founded nonprofit dedicated to rigorous, independent economic and financial analysis. </div>
+
+            <button className="h-fit min-w-max rounded-full team2:px-8 px-6 team2:py-1.5 py-1 team2:text-lg bg-stone-900 dark:bg-stone-200 dark:text-stone-900 text-stone-100 hover:dark:bg-stone-100 hover:bg-stone-800 hover:cursor-pointer w-fit transition-colors duration-150 ease-in-out">Apply now</button>
+
+          </div>
         </div>
-
-
 
       </div>
     </div>
