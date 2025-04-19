@@ -1,5 +1,5 @@
 // import { articles } from '../../assets/database';
-import Custom404 from '../../../not-found'
+import Custom404 from '../../not-found'
 import { getPayload } from "payload"
 import config from '../../../../payload.config'; // Static import
 import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html';
