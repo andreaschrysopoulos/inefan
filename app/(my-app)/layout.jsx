@@ -1,9 +1,6 @@
-
 import './globals.css'
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
-import Newsletter from "./components/Newsletter"
-
 
 export const metadata = {
   title: "Inefan",

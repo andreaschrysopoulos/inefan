@@ -1,9 +1,13 @@
-import Image from "next/image"
-
 export default function MembershipPage() {
 
-  return <>
+  if (typeof window !== "undefined") {
+    document.documentElement.style.scrollBehavior = "smooth";
+  }
 
+  return <>
+    {<style>{`
+        html { scroll-behavior: smooth; }
+      `}</style>}
     {/* HERO */}
     <div className='flex-auto flex flex-col justify-start pb-15 pt-15 mt-[-23px] px-5 bg-stone-200 dark:bg-stone-900'>
       <div className="max-w-5xl mx-auto flex flex-col gap-10">
@@ -11,15 +15,15 @@ export default function MembershipPage() {
 
           {/* Text */}
           <div className="flex flex-col min-w-68 not-membershipHeroWrap:row-start-2 not-membershipHeroWrap:self-start">
-            <div className="text-blue-500 team2:text-lg font-medium team2:mb-2 mb-1">Inefan Membership</div>
-            <div className="team2:text-6xl text-5xl font-medium team2:mb-3 mb-1.5">Join the Team!</div>
-            <div className="team2:text-xl text-lg font-light team2:mb-3 mb-2 dark:text-stone-300">Become a member of Inefan — a dynamic, student-founded nonprofit dedicated to rigorous, independent economic and financial analysis. </div>
+            <div className="text-blue-500 team2:text-lg font-medium team2:mb-2 mb-1">Εγγραφή Μέλους</div>
+            <div className="team2:text-6xl text-5xl font-medium team2:mb-3 mb-1.5">Γίνε μέλος του Inefan!</div>
+            <div className="team2:text-xl text-lg font-light team2:mb-3 mb-2 dark:text-stone-300">Το Inefan είναι μια δυναμική, φοιτητική, μη κερδοσκοπική πρωτοβουλία που προάγει την ανεξάρτητη ανάλυση στην οικονομία και τα χρηματοοικονομικά.</div>
 
             {/* Buttons */}
             <div className="flex gap-7 items-center team2:mt-4 mt-2">
-              <button className="rounded-full team2:px-8 px-6 team2:py-1.5 py-1 team2:text-lg bg-stone-900 dark:bg-stone-200 dark:text-stone-900 text-stone-100 hover:dark:bg-stone-100 hover:bg-stone-800 hover:cursor-pointer w-fit transition-colors duration-150 ease-in-out">Apply now</button>
+              <button className="rounded-full team2:px-8 px-6 team2:py-1.5 py-1 team2:text-lg bg-stone-900 dark:bg-stone-200 dark:text-stone-900 text-stone-100 hover:dark:bg-stone-100 hover:bg-stone-800 hover:cursor-pointer w-fit transition-colors duration-150 ease-in-out">Κάνε αίτηση τώρα</button>
 
-              <a href="#learn-more" className="rounded-full team2:text-lg hover:cursor-pointer w-fit transition-colors duration-150 ease-in-out">Learn more</a>
+              <a href="#learn-more" className="rounded-full team2:text-lg hover:cursor-pointer w-fit transition-colors duration-150 ease-in-out">Μάθε περισσότερα</a>
 
             </div>
           </div>
@@ -44,11 +48,11 @@ export default function MembershipPage() {
           {/* Text */}
           <div className="min-w-68">
             <div className="team2:text-4xl text-3xl font-medium mb-2">
-              Attend Seminars and Workshops on Economics
+              Σεμινάρια και Workshops: Από τη θεωρία στην πράξη
             </div>
 
             <div className="mb-5 font-light team2:text-lg text-base">
-              Join members-only events where experts break down complex economic topics into real-world insights. From finance to policy to innovation, our sessions are designed to expand your understanding and challenge your thinking.
+              Πάρε μέρος σε αποκλειστικές εκδηλώσεις όπου καταξιωμένοι επαγγελματίες «αποδομούν» πολύπλοκα οικονομικά ζητήματα και τα μετατρέπουν σε πρακτική γνώση.
             </div>
           </div>
 
@@ -64,11 +68,11 @@ export default function MembershipPage() {
           {/* Text */}
           <div className="min-w-68 not-membershipHeroWrap:row-start-2">
             <div className="team2:text-4xl text-3xl font-medium mb-2">
-              Join a Team and Work on Real Projects
+              Δούλεψε πάνω σε πραγματικά projects
             </div>
 
             <div className="mb-5 font-light team2:text-lg text-base">
-              Choose a focus area you’re passionate about—like entrepreneurship, public policy, or financial analysis—and collaborate with other members on hands-on projects that build practical skills and real experience.
+              Διάλεξε την ομάδα που σε ενθουσιάζει — Marketing, HR, Financial Analysis, Project Mangement, Editorial και συνεργάσου με άλλα μέλη σε projects που χτίζουν ουσιαστικές δεξιότητες και αφήνουν πραγματικό αποτύπωμα.
             </div>
           </div>
 
@@ -90,11 +94,11 @@ export default function MembershipPage() {
           {/* Text */}
           <div className="min-w-68">
             <div className="team2:text-4xl text-3xl font-medium mb-2">
-              Visit Companies and Learn How Business Works
+              Γνώρισε από κοντά τον κόσμο των επιχειρήσεων
             </div>
 
             <div className="mb-5 font-light team2:text-lg text-base">
-              Take part in organized visits to leading companies and startups. See how professionals operate on the inside, ask questions, and understand the day-to-day realities of different industries.
+              Μπες στα άδυτα κορυφαίων εταιρειών και ανερχόμενων startups μέσα από οργανωμένες επισκέψεις. Δες πώς λειτουργούν τα πράγματα από μέσα, κάνε τις σωστές ερωτήσεις και πάρε πολύτιμες εμπειρίες από πρώτο χέρι.
             </div>
           </div>
 
@@ -110,11 +114,12 @@ export default function MembershipPage() {
           {/* Text */}
           <div className="min-w-68 not-membershipHeroWrap:row-start-2">
             <div className="team2:text-4xl text-3xl font-medium mb-2">
-              Connect with Top Organizations and Career Opportunities
+              Δικτύωση και Καριέρα: Άνοιξε τις σωστές πόρτες
+
             </div>
 
             <div className="mb-5 font-light team2:text-lg text-base">
-              We bridge the gap between learning and doing by partnering with major players in the business world. As a member, you’ll gain access to networking opportunities, internships, and direct exposure to the job market.
+              Μέσα από τις συνεργασίες μας με ηγέτες της αγοράς, σου δίνουμε πρόσβαση σε networking ευκαιρίες, πρακτικές ασκήσεις και real-world προοπτικές καριέρας. Στόχος μας: να συνδέσουμε τη μάθηση με την επαγγελματική δράση.
             </div>
           </div>
 
@@ -130,11 +135,11 @@ export default function MembershipPage() {
       <div className="max-w-5xl w-full mx-auto flex flex-col gap-10">
 
         <div className="flex flex-col min-w-68 items-start max-w-2xl">
-          <div className="team2:text-6xl text-5xl font-medium team2:mb-3 mb-1.5">Join the team!</div>
+          <div className="team2:text-6xl text-5xl font-medium team2:mb-3 mb-1.5">Γίνε μέλος του Inefan!</div>
 
-          <div className="team2:text-xl text-lg font-light team2:mb-7 mb-3 dark:text-stone-300">Become a member of Inefan — a dynamic, student-founded nonprofit dedicated to rigorous, independent economic and financial analysis. </div>
+          <div className="team2:text-xl text-lg font-light team2:mb-7 mb-3 dark:text-stone-300">Το Inefan είναι μια δυναμική, φοιτητική, μη κερδοσκοπική πρωτοβουλία που προάγει την ανεξάρτητη ανάλυση στην οικονομία και τα χρηματοοικονομικά.</div>
 
-          <button className="h-fit min-w-max rounded-full team2:px-8 px-6 team2:py-1.5 py-1 team2:text-lg bg-stone-900 dark:bg-stone-200 dark:text-stone-900 text-stone-100 hover:dark:bg-stone-100 hover:bg-stone-800 hover:cursor-pointer w-fit transition-colors duration-150 ease-in-out">Apply now</button>
+          <button className="h-fit min-w-max rounded-full team2:px-8 px-6 team2:py-1.5 py-1 team2:text-lg bg-stone-900 dark:bg-stone-200 dark:text-stone-900 text-stone-100 hover:dark:bg-stone-100 hover:bg-stone-800 hover:cursor-pointer w-fit transition-colors duration-150 ease-in-out">Κάνε αίτηση τώρα</button>
 
         </div>
       </div>

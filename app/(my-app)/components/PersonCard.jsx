@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react"
 
-const CardTeamMember = ({ name, role, bio, img, linkedin }) => {
+const CardTeamMember = ({ name, role, bio, img, linkedin, title }) => {
 
   const [popupState, setPopupState] = useState(false);
   const card = useRef(null);
@@ -105,14 +105,33 @@ const CardTeamMember = ({ name, role, bio, img, linkedin }) => {
             <img className="w-50 rounded-full shadow-lg" src={img} alt="photo" />
 
             {/* Role */}
-            <span className="text-lg font-medium dark:text-stone-300 text-stone-700 mt-7 text-center">{role}</span>
+            <span className="text-xl font-medium dark:text-stone-300 text-stone-700 mt-7 text-center">{role}</span>
 
             {/* Full Name */}
             <span className="w-fit text-4xl team3:text-5xl font-semibold text-center mt-1">{name}</span>
 
-            {/* LinkedIn */}
-            <a href={linkedin} target="_blank" className="mt-4 team3:mt-6 ml-0.5 size-6 opacity-90 hover:opacity-100 active:opacity-100 transition-opacity duration-200 hover:shadow-sm active:shadow-sm"><img className="" src="/linkedin-card.png" alt="linkedn-img" /></a>
+            {/* Title */}
+            <span className="w-fit text-base text-center mt-3">{title}</span>
 
+            {/* LinkedIn */}
+            <a href={linkedin} target="_blank" rel="noopener noreferrer" className="transition-opacity duration-200 flex items-center justify-center opacity-60 hover:opacity-100 active:opacity-100 will-change-transform mt-5 team3:mt-6 ml-0.5">
+
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 72 72"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="LinkedIn logo"
+                shapeRendering="geometricPrecision">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M8 0h56a8 8 0 0 1 8 8v56a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8Z
+     M62 62H51.315625V43.8021149c0-4.9893607-1.8958333-7.7775826-5.8449219-7.7775826-4.2960937 0-6.540625 2.9015781-6.540625 7.7775826V62H28.6333333V27.3333333h10.2967448v4.6695946s3.096-5.7287132 10.452509-5.7287132c7.353125 0 12.6179689 4.4902554 12.6179689 13.7769979V62ZM16.349349 22.7940133c3.507292 0 6.348349-2.8643567 6.348349-6.3970067 0-3.53265-2.841057-6.3970067-6.348349-6.3970067S10 12.8643566 10 16.3970067c0 3.53265 2.842057 6.3970066 6.349349 6.3970066ZM11.0325521 62h10.7368489V27.3333333H11.0325521V62Z"
+                  fill="currentColor" />
+              </svg>
+            </a>
             {/* Bio */}
             <span className="mt-7 team3:mt-10">{bio}</span>
 

@@ -68,6 +68,8 @@ export interface Config {
   blocks: {};
   collections: {
     articles: Article;
+    weeklyReports: WeeklyReport;
+    boardMembers: BoardMember;
     media: Media;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
@@ -77,6 +79,8 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    weeklyReports: WeeklyReportsSelect<false> | WeeklyReportsSelect<true>;
+    boardMembers: BoardMembersSelect<false> | BoardMembersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -121,15 +125,34 @@ export interface UserAuthOperations {
  */
 export interface Article {
   id: number;
-  slug: string;
-  title: string;
-  category: string;
-  subtitle: string;
+  _order?: string;
   date: string;
-  content: {
-    [k: string]: unknown;
-  }[];
+  category: 'International' | 'Business' | 'Financial' | 'Economics';
   image: number | Media;
+  /**
+   * Auto-generated from title.
+   */
+  slug?: string | null;
+  title: string;
+  /**
+   * Shown in bigger font before the picture.
+   */
+  subtitle: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -139,7 +162,7 @@ export interface Article {
  */
 export interface Media {
   id: number;
-  alt: string;
+  alt?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -154,10 +177,41 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "weeklyReports".
+ */
+export interface WeeklyReport {
+  id: number;
+  _order?: string;
+  name: string;
+  timePeriodStart: string;
+  timePeriodEnd: string;
+  reportFile: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "boardMembers".
+ */
+export interface BoardMember {
+  id: number;
+  _order?: string;
+  name: string;
+  inefanRole: string;
+  title?: string | null;
+  photo: number | Media;
+  linkedin: string;
+  bio: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
   id: number;
+  name?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -179,6 +233,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'articles';
         value: number | Article;
+      } | null)
+    | ({
+        relationTo: 'weeklyReports';
+        value: number | WeeklyReport;
+      } | null)
+    | ({
+        relationTo: 'boardMembers';
+        value: number | BoardMember;
       } | null)
     | ({
         relationTo: 'media';
@@ -235,13 +297,42 @@ export interface PayloadMigration {
  * via the `definition` "articles_select".
  */
 export interface ArticlesSelect<T extends boolean = true> {
+  _order?: T;
+  date?: T;
+  category?: T;
+  image?: T;
   slug?: T;
   title?: T;
-  category?: T;
   subtitle?: T;
-  date?: T;
   content?: T;
-  image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "weeklyReports_select".
+ */
+export interface WeeklyReportsSelect<T extends boolean = true> {
+  _order?: T;
+  name?: T;
+  timePeriodStart?: T;
+  timePeriodEnd?: T;
+  reportFile?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "boardMembers_select".
+ */
+export interface BoardMembersSelect<T extends boolean = true> {
+  _order?: T;
+  name?: T;
+  inefanRole?: T;
+  title?: T;
+  photo?: T;
+  linkedin?: T;
+  bio?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -268,6 +359,7 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  name?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;

@@ -34,11 +34,12 @@ export default async function HomePage() {
             <div className="absolute top-0 left-0 size-full team2:p-10 p-8 flex flex-col gap-2 justify-center items-center transition-all duration-300 ease-in-out hover:backdrop-brightness-110 active:backdrop-brightness-110 cursor-default text-white backdrop-blur-xs">
               {/* Heading */}
               <span className="team2:text-5xl text-4xl text-center font-semibold">
-                Membership
+                Εγγραφή μέλους
               </span>
               {/* Subheading */}
-              <span className="team2:text-2xl text-xl text-center">
-                Expand your knowledge and skillset in economics
+              <span className="team2:text-2xl text-xl text-center max-w-2xl">
+                Ενδιαφέρεσαι να αναπτύξεις τις ικανότητες σου και να συμμετέχεις
+                ενεργά στην ομάδα μας;
               </span>
 
               {/* Buttons */}
@@ -47,13 +48,13 @@ export default async function HomePage() {
                   href="/membership"
                   className="border border-stone-200 bg-stone-200 hover:bg-stone-100 active:bg-stone-100 hover:border-stone-100 active:border-stone-100 text-stone-900 py-1.5 px-4 rounded-full cursor-pointer transition-colors duration-150 ease-in-out min-w-max"
                 >
-                  Learn more
+                  Μάθε περισσότερα
                 </Link>
                 <Link
                   href="/membership/join"
                   className="border border-stone-100 bg-transparent active:bg-stone-100 hover:bg-stone-100 hover:text-stone-900 active:text-stone-900 py-1.5 px-4 rounded-full cursor-pointer transition-colors duration-150 ease-in-out min-w-max"
                 >
-                  Join now
+                  Γίνε μέλος
                 </Link>
               </div>
             </div>
@@ -67,7 +68,7 @@ export default async function HomePage() {
                 Financial Reports
               </span>
               <span className="team2:text-2xl text-xl text-center">
-                Weekly updates on stock market performance
+                Εβδομαδιαίες ενημερώσεις δεικτών και χρηματιστηριακών εξελίξεων
               </span>
 
               {/* Buttons */}
@@ -76,14 +77,15 @@ export default async function HomePage() {
                   href="/reports"
                   className="border border-stone-200 bg-stone-200 hover:bg-stone-100 active:bg-stone-100 text-stone-900 py-1.5 px-4 rounded-full cursor-pointer transition-colors duration-150 ease-in-out min-w-max"
                 >
-                  Learn more
+                  Δες τα reports
                 </Link>
-                <Link
+                {reports[0] ? (<Link
                   href={reports[0].reportFile.url}
                   className="border border-stone-100 bg-transparent hover:bg-stone-100 hover:text-stone-900 active:bg-stone-100 active:text-stone-900 py-1.5 px-4 rounded-full cursor-pointer transition-colors duration-150 ease-in-out min-w-max"
                 >
-                  View Latest
-                </Link>
+                  Τελευταίο Report
+                </Link>) : null}
+
               </div>
             </div>
           </div>
@@ -96,7 +98,8 @@ export default async function HomePage() {
                 Inefan Insights
               </span>
               <span className="team2:text-2xl text-xl text-center">
-                Thought provoking articles by our editorial team
+                Επίκαιρα άρθρα από την ομάδα αρθρογραφίας της Inefan.
+
               </span>
               {/* Buttons */}
               <div className="flex items-center justify-center gap-3 mt-5">
@@ -104,7 +107,7 @@ export default async function HomePage() {
                   href="/insights"
                   className="border border-stone-200 bg-stone-200 hover:bg-stone-100 hover:border-stone-100 active:bg-stone-100 active:border-stone-100 text-stone-900 py-1.5 px-4 rounded-full cursor-pointer transition-colors duration-150 ease-in-out min-w-max"
                 >
-                  Learn more
+                  Δες τα άρθρα
                 </Link>
               </div>
             </div>

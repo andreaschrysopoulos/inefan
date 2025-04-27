@@ -28,7 +28,8 @@ export default async function Team() {
 
           <div className={`flex flex-col transition-all duration-400`}>
             <span className={`font-semibold team3:text-6xl text-5xl mb-2`}>Inefan Board</span>
-            <span className={`font team3:text-3xl text-2xl mb-10 dark:text-stone-400 text-stone-600`}>The Board of Directors at Inefan leads with diverse expertise in economics, finance, and entrepreneurship, guiding our mission to connect youth with education and career opportunities.</span>
+            <span className={`font team3:text-3xl text-2xl mb-10 dark:text-stone-400 text-stone-600`}>Το Διοικητικό Συμβούλιο της Inefan απαρτίζεται από νέους και δυναμικούς φοιτητές και επαγγελματίες με εξειδίκευση στην οικονομία, τα χρηματοοικονομικά και την επιχειρηματικότητα.
+            </span>
           </div>
           {/* <p className="text-sm text-gray-500">Server render: {serverTimestamp}</p> */}
           {/* Board */}
@@ -37,8 +38,9 @@ export default async function Team() {
               <CardTeamMember
                 key={member.id}
                 name={member.name}
-                role={member.role}
+                role={member.inefanRole}
                 bio={member.bio}
+                title={member.title}
                 img={member.photo.url}
                 linkedin={member.linkedin}
               />

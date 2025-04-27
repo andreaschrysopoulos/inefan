@@ -82,7 +82,7 @@ export default async function ReportsPage() {
                         href={report.reportFile.url}
                         target="_blank"
                       >
-                        View
+                        Άνοιγμα
                       </a>
                     </td>
                   </tr>
@@ -91,7 +91,7 @@ export default async function ReportsPage() {
             </table>
           </>
           :
-          <div>No reports available at this time </div>
+          <div>Δεν υπάρχουν διαθέσιμα reports αυτή τη στιγμή.</div>
         }
 
 

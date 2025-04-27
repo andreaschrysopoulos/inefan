@@ -10,9 +10,9 @@
   --breakpoint-blogLarge: 960px;
 }
 
-html {
+/* #membershipPage {
   scroll-behavior: smooth;
-}
+} */
 
 /* h1 {
   @apply text-3xl mb-4;
